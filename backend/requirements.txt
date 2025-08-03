@@ -1,0 +1,6 @@
+clerk_backend_api>=2.2.0
+fastapi
+openai
+python-dotenv
+sqlalchemy
+uvicorn
