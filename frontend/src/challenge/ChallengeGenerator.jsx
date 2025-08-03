@@ -18,7 +18,7 @@ export function ChallengeGenerator() {
   const fetchQuota = async () => {
     try {
       const data = await makeRequest("quota");
-      setQuota(data);
+      setQuota(data.quota);
     } catch (err) {
       console.log(err);
     }
@@ -54,8 +54,8 @@ export function ChallengeGenerator() {
       <h2>Coding Challenge Generator</h2>
 
       <div className="quota-display">
-        <p>Challenges remaining today: {quota?.quota_remaining || 0}</p>
-        {quota?.quota_remaining === 0 && (
+        <p>Challenges remaining today: {quota?.remaining_quota || 0}</p>
+        {quota?.remaining_quota === 0 && (
           <p>Next reset: {getNextResetTime()?.toLocaleString()}</p>
         )}
       </div>
@@ -75,7 +75,7 @@ export function ChallengeGenerator() {
 
       <button
         onClick={generateChallenge}
-        disabled={isLoading || quota?.quota_remaining === 0}
+        disabled={isLoading || quota?.remaining_quota === 0}
         className="generate-button"
       >
         {isLoading ? "Generating..." : "Generate Challenge"}
